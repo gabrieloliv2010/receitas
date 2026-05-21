@@ -1,4 +1,6 @@
-/* ========== RESET BÁSICO ========== */
+html{
+  scroll-behavior:smooth;
+}
 * {
   margin: 0;
   padding: 0;
@@ -8,25 +10,36 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
-  padding: 30px;  
+  padding: 30px;
+  animation:fade 0.6s ease;  
 }
 
 /* ========== GRADE DE CARDS ========== */
 /* .grade {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: (auto-fit,minmax(280px,1fr));
+  gap: 25px;
   max-width: 900px;
   margin: 0 auto;
+  padding:30px;
 } */
 
 /* Style do header */
-header {
-  background-color: white;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 30px;
-  border-radius: 16px;
+header{
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
+
+  padding:15px 25px;
+  border-radius:16px;
+
+  margin-bottom:30px;
+
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
 }
 
 header nav {
@@ -37,15 +50,39 @@ header nav {
 
 
 ul {
+  display:flex;
   list-style: none;
   gap: 20px;
 }
 
 
 a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+  text-decoration:none;
+  color:#333;
+  font-weight:bold;
+  transition:.3s;
+  position:relative;
+}
+
+a:hover{
+  a::after{
+  content:"";
+  position:absolute;
+
+  left:0;
+  bottom:-5px;
+
+  width:0;
+  height:2px;
+
+  background:#c42020;
+
+  transition:.3s;
+}
+
+a:hover::after{
+  width:100%;
+}
 }
 
 
@@ -53,33 +90,49 @@ a {
 
 
 .grade {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
+    display:flex;
+  flex-wrap:wrap;
+  gap:25px;
+  max-width:1200px;
+  margin:0 auto;
+  justify-content:center;
 }
 
-.card {
-  flex: 1 1 calc(33.333% - 20px);
+.card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  transition:.3s;
+  flex:1 1 280px;
+  cursor:pointer;
 }
 
-/* ========== CARD ========== */
-.card {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
+.card:hover{
+    transform:scale(.98);
+    border:1px solid rgba(196,32,32,.2);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
 .card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
+    width:100%;
+  height:180px;
+  object-fit:cover;
+  transition:.4s;
 }
 
-.card-corpo {
-  padding: 12px;
+.card-corpo{
+  padding:18px;
+}
+
+.card-corpo h3{
+  margin-bottom:10px;
+  font-size:18px;
+}
+
+.card-corpo p{
+  line-height:1.5;
+  color:#666;
 }
 
 .card-corpo h3 {
@@ -95,17 +148,22 @@ a {
 
 /* ========== BOTÃO ========== */
 .btn {
-  background-color: #8b0000;
-  color: #ffffff;
-  border: none;
-  padding: 8px 14px;
-  font-size: 13px;
-  border-radius: 3px;
-  cursor: pointer;
+  width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background: rgb(180, 20, 20);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+
+    transition:.3s;
 }
 
 .btn:hover {
-  background-color: #a00000;
+   background:#a00000;
+  transform:translateY(-3px);
+  box-shadow:0 6px 15px rgba(0,0,0,.15);
 }
 
 /* ========== FUNDO ESCURO DO MODAL ========== */
@@ -147,10 +205,27 @@ a {
 
 /* ========== BOTÃO FECHAR ========== */
 .fechar {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  float: right;
-  color: #333;
+    background:#f3f3f3;
+  border:none;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+
+  font-size:16px;
+  cursor:pointer;
+
+  float:right;
+
+  transition:.3s;
+}
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
